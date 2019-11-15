@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 class Tube
 {
@@ -17,8 +19,15 @@ public class Puzzle2Logic : MonoBehaviour
     public int Input1;
     public int Input2;
 
+    public UnityEvent InvalidInput;
+
     void Start()
     {
+        ControlButtons Controller = gameObject.GetComponent<ControlButtons>();
+
+        Input1 = Controller.InputLeft;
+        Input2 = Controller.InputRight;
+
         Tube1.Current = 8;
         Tube1.Max = 8;
 
@@ -27,7 +36,29 @@ public class Puzzle2Logic : MonoBehaviour
 
         Tube3.Current = 0;
         Tube3.Max = 3;
+
+        Debug.Log(Tube1.Current);
+        Debug.Log(Tube2.Current);
+        Debug.Log(Tube3.Current);
     }
+
+    private void Update()
+    {
+        ControlButtons Controller = gameObject.GetComponent<ControlButtons>();
+        OnMoveButton(Controller);
+    }
+
+    public void OnMoveButton(ControlButtons Controller)
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Input1 = Controller.InputLeft;
+            Input2 = Controller.InputRight;
+
+            logic(Input1, Input2);
+        }
+    }
+
     //PASSES IN TUBE NUMBER
     public void logic(int Input1, int Input2)
     {
@@ -78,27 +109,35 @@ public class Puzzle2Logic : MonoBehaviour
                 Moving = InputTube1.Current + InputTube2.Current;
                 InputTube1.Current = Moving - InputTube2.Max;
                 InputTube2.Current = InputTube2.Max;
+
+                Debug.Log(Tube1.Current);
+                Debug.Log(Tube2.Current);
+                Debug.Log(Tube3.Current);
             }
             else
             {
                 Moving = InputTube1.Current + InputTube2.Current;
                 InputTube2.Current = Moving;
                 InputTube1.Current = 0;
+
+                Debug.Log(Tube1.Current);
+                Debug.Log(Tube2.Current);
+                Debug.Log(Tube3.Current);
             }
         }
 
         //IF MOVING TUBE FROM IS EMPTY
-        if (InputTube1.Current == InputTube1.Min)
+        if (InputTube1.Current == InputTube1.Min || InputTube1 == InputTube2)
         {
-            //NOTHING TO MOVE ACROSS
+            InvalidInput.Invoke();
         }
 
 
-        //IF IT CHOSE ITSELF
-        if (InputTube1 == InputTube2)
-        {
-            //CHOSEN ITSELF - NOT ALLOWED
-        }
+        ////IF IT CHOSE ITSELF
+        //if (InputTube1 == InputTube2)
+        //{
+        //    //CHOSEN ITSELF - NOT ALLOWED
+        //}
 
     }
 }
