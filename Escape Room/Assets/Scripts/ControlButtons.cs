@@ -16,7 +16,11 @@ public class ControlButtons : MonoBehaviour
     public int InputRight = 1;
 
     public Transform Camera;
+    public GameObject Text;
 
+    public int RayDistance = 4;
+
+    public bool Floaty = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +40,32 @@ public class ControlButtons : MonoBehaviour
     {
         LeftInput();
         RightInput();
+        FloatingText();
     }
 
+    public void FloatingText()
+    {
+        if (!Floaty) 
+        {
+            Text.SetActive(false);
+        }
+        else
+        {
+            Text.SetActive(true);
+        }
+    }
     public void LeftInput()
     {
         RaycastHit TestRay;
-        if (Physics.Raycast(Camera.position, Camera.TransformDirection(Camera.forward), out TestRay,  10))
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
         {
-            Debug.DrawRay(Camera.position, Camera.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
-
-            //Debug.Log(TestRay);
+            Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
 
             if (TestRay.transform.tag == "interactableLeft")
             {
-
-                Debug.Log("TEST");
-                if (Input.GetKeyDown(KeyCode.Q))
+                Floaty = true;
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("HELLO SAM");
                     if (Output1.activeSelf == true)
                     {
                         Output1.SetActive(false);
@@ -78,35 +90,44 @@ public class ControlButtons : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     public void RightInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        RaycastHit TestRay;
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
         {
-            if (In1.activeSelf == true)
+            Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
+
+            if (TestRay.transform.tag == "interactableRight")
             {
-                In1.SetActive(false);
-                In2.SetActive(true);
-                In3.SetActive(false);
-                InputRight = 2;
-            }
-            else if (In2.activeSelf == true)
-            {
-                In1.SetActive(false);
-                In2.SetActive(false);
-                In3.SetActive(true);
-                InputRight = 3;
-            }
-            else
-            {
-                In1.SetActive(true);
-                In2.SetActive(false);
-                In3.SetActive(false);
-                InputRight = 1;
+                Floaty = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (In1.activeSelf == true)
+                    {
+                        In1.SetActive(false);
+                        In2.SetActive(true);
+                        In3.SetActive(false);
+                        InputRight = 2;
+                    }
+                    else if (In2.activeSelf == true)
+                    {
+                        In1.SetActive(false);
+                        In2.SetActive(false);
+                        In3.SetActive(true);
+                        InputRight = 3;
+                    }
+                    else
+                    {
+                        In1.SetActive(true);
+                        In2.SetActive(false);
+                        In3.SetActive(false);
+                        InputRight = 1;
+                    }
+                }
             }
         }
+
     }
 }
