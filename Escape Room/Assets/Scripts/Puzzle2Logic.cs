@@ -45,18 +45,15 @@ public class Puzzle2Logic : MonoBehaviour
     private void Update()
     {
         ControlButtons Controller = gameObject.GetComponent<ControlButtons>();
-        OnMoveButton(Controller);
     }
 
-    public void OnMoveButton(ControlButtons Controller)
+    public void OnMoveButton()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Input1 = Controller.InputLeft;
-            Input2 = Controller.InputRight;
+        ControlButtons Controller = gameObject.GetComponent<ControlButtons>();
+        Input1 = Controller.InputLeft;
+        Input2 = Controller.InputRight;
 
-            logic(Input1, Input2);
-        }
+        logic(Input1, Input2);
     }
 
     //PASSES IN TUBE NUMBER

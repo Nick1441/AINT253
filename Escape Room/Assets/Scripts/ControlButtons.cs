@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ControlButtons : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class ControlButtons : MonoBehaviour
     public GameObject Text;
 
     public int RayDistance = 4;
+    public UnityEvent SendInputEvent;
 
     public bool Floaty = false;
     // Start is called before the first frame update
@@ -40,6 +42,7 @@ public class ControlButtons : MonoBehaviour
     {
         LeftInput();
         RightInput();
+        SendInput();
         FloatingText();
     }
 
@@ -53,6 +56,24 @@ public class ControlButtons : MonoBehaviour
         {
             Text.SetActive(true);
         }
+    }
+
+    public void SendInput()
+    {
+        RaycastHit TestRay;
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
+        {
+            Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
+
+            if (TestRay.transform.tag == "SendInput")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    SendInputEvent.Invoke();
+                }
+            }
+        }
+
     }
     public void LeftInput()
     {
