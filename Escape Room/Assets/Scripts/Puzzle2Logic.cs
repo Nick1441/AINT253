@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
+[System.Serializable]
+public class SendTubeLevels : UnityEvent<int, int, int> { }
 class Tube
 {
     public int Max;
@@ -20,6 +21,7 @@ public class Puzzle2Logic : MonoBehaviour
     public int Input2;
 
     public UnityEvent InvalidInput;
+    public SendTubeLevels SendTube;
 
     void Start()
     {
@@ -40,6 +42,8 @@ public class Puzzle2Logic : MonoBehaviour
         Debug.Log(Tube1.Current);
         Debug.Log(Tube2.Current);
         Debug.Log(Tube3.Current);
+
+        SendTube.Invoke(Tube1.Current, Tube2.Current, Tube3.Current);
     }
 
     private void Update()
@@ -121,12 +125,14 @@ public class Puzzle2Logic : MonoBehaviour
                 Debug.Log(Tube2.Current);
                 Debug.Log(Tube3.Current);
             }
+
+            SendTube.Invoke(Tube1.Current, Tube2.Current, Tube3.Current);
         }
 
         //IF MOVING TUBE FROM IS EMPTY
         if (InputTube1.Current == InputTube1.Min || InputTube1 == InputTube2)
         {
-            InvalidInput.Invoke();
+            //InvalidInput.Invoke();
         }
 
 
