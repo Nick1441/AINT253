@@ -110,6 +110,10 @@ public class ControlButtons : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                Floaty = false;
+            }
         }
     }
 

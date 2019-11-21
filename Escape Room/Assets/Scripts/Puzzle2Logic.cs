@@ -94,14 +94,20 @@ public class Puzzle2Logic : MonoBehaviour
             InputTube2 = Tube3;
         }
 
+
+        //IF MOVING TUBE FROM IS EMPTY
+        if (InputTube1.Current == InputTube1.Min || InputTube1 == InputTube2)
+        {
+            //InvalidInput.Invoke();
+        }
         //IF MOVING INTO TUBE IS FULL
-        if (InputTube2.Current == InputTube2.Max)
+        else if (InputTube2.Current == InputTube2.Max)
         {
             //MOVING TARGET IS FULL
         }
 
         //IF MOVING INTO TUBE IS EMPTY/HALF
-        if (InputTube2.Max != InputTube2.Current)
+        else if (InputTube2.Max != InputTube2.Current)
         {
             int Moving;
 
@@ -129,11 +135,7 @@ public class Puzzle2Logic : MonoBehaviour
             SendTube.Invoke(Tube1.Current, Tube2.Current, Tube3.Current);
         }
 
-        //IF MOVING TUBE FROM IS EMPTY
-        if (InputTube1.Current == InputTube1.Min || InputTube1 == InputTube2)
-        {
-            //InvalidInput.Invoke();
-        }
+
 
 
         ////IF IT CHOSE ITSELF
