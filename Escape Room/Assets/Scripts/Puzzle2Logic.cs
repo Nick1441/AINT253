@@ -22,6 +22,7 @@ public class Puzzle2Logic : MonoBehaviour
 
     public UnityEvent InvalidInput;
     public SendTubeLevels SendTube;
+    public UnityEvent InvalidLevels;
 
     void Start()
     {
@@ -96,9 +97,13 @@ public class Puzzle2Logic : MonoBehaviour
 
 
         //IF MOVING TUBE FROM IS EMPTY
-        if (InputTube1.Current == InputTube1.Min || InputTube1 == InputTube2)
+        if (InputTube1 == InputTube2)
         {
-            //InvalidInput.Invoke();
+            InvalidInput.Invoke();
+        }
+        else if (InputTube1.Current == InputTube1.Min)
+        {
+            InvalidLevels.Invoke();
         }
         //IF MOVING INTO TUBE IS FULL
         else if (InputTube2.Current == InputTube2.Max)
