@@ -7,6 +7,8 @@ TagManager:
   - interactableLeft
   - interactableRight
   - SendInput
+  - interactableRight2
+  - interactableLeft2
   layers:
   - Default
   - TransparentFX
