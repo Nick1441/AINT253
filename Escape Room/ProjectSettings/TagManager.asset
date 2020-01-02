@@ -9,6 +9,9 @@ TagManager:
   - SendInput
   - interactableRight2
   - interactableLeft2
+  - Light
+  - SwitchOff
+  - SwitchOn
   layers:
   - Default
   - TransparentFX
