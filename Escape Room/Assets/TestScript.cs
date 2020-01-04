@@ -12,11 +12,13 @@ public class TestScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("HIT");
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<Animator>().SetBool("Seen", true);
+        //gameObject.GetComponent<Renderer>().material.color = Color.red;
     }
 
     void OnTriggerExit(Collider other)
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.green;
+        gameObject.GetComponent<Animator>().SetBool("Seen", false);
+        //gameObject.GetComponent<Renderer>().material.color = Color.green;
     }
 }

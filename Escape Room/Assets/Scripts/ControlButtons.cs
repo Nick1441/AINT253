@@ -22,6 +22,7 @@ public class ControlButtons : MonoBehaviour
     public int RayDistance = 4;
     public UnityEvent SendInputEvent;
 
+
     public bool Floaty = false;
     // Start is called before the first frame update
     void Start()
@@ -62,8 +63,9 @@ public class ControlButtons : MonoBehaviour
 
     public void SendInput()
     {
+        var layerMask = ~(1 << 10);
         RaycastHit TestRay;
-        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance, layerMask))
         {
             Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
 
@@ -79,8 +81,9 @@ public class ControlButtons : MonoBehaviour
     }
     public void LeftInput()
     {
+        var layerMask = ~(1 << 10);
         RaycastHit TestRay;
-        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance, layerMask))
         {
             Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
 
@@ -122,8 +125,9 @@ public class ControlButtons : MonoBehaviour
 
     public void LeftInput2()
     {
+        var layerMask = ~(1 << 10);
         RaycastHit TestRay;
-        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance, layerMask))
         {
             Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
 
@@ -165,8 +169,9 @@ public class ControlButtons : MonoBehaviour
 
     public void RightInput()
     {
+        var layerMask = ~(1 << 10);
         RaycastHit TestRay;
-        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance, layerMask))
         {
             Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
 
@@ -204,8 +209,9 @@ public class ControlButtons : MonoBehaviour
 
     public void RightInput2()
     {
+        var layerMask = ~(1 << 10);
         RaycastHit TestRay;
-        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance))
+        if (Physics.Raycast(Camera.position, transform.TransformDirection(Camera.forward), out TestRay, RayDistance, layerMask))
         {
             Debug.DrawRay(Camera.position, transform.TransformDirection(Camera.forward) * TestRay.distance, Color.yellow);
 
