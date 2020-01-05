@@ -15,6 +15,8 @@ public class LightSwitch : MonoBehaviour
     public Transform Camera;
     public float RayDistance = 10f;
 
+    public bool GotTorch = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,27 +57,42 @@ public class LightSwitch : MonoBehaviour
 
     public void OnLights()
     {
+        //Make Arm Animation Make
+        if (GotTorch == true)
+        {
+            //DO ANIMATION TO PUT TORCH UP.
+            //TURN OFF TORCH
+        }
+
         SwitchOn.SetActive(true);
         SwitchOff.SetActive(false);
 
         for (int i = 0; i < Lights.Length; i++)
         {
             Lights[i].GetComponent<Animator>().SetBool("On", false);
-            //Lights[i].GetComponent<Light>().intensity = 2.61f;
-            //Lights[i].GetComponent<Light>().color = Color.Lerp(ColorOff, ColorOn, Duration);
         }
     }
 
     public void OffLights()
     {
+        //Make Arm Animation Make
+        if (GotTorch == true)
+        {
+            //DO ANIMATION TO PUT TORCH DOWN.
+            //TURN OFF TORCH
+        }
+
         SwitchOn.SetActive(false);
         SwitchOff.SetActive(true);
 
         for (int i = 0; i < Lights.Length; i++)
         {
             Lights[i].GetComponent<Animator>().SetBool("On", true);
-            //Lights[i].GetComponent<Light>().intensity = 0f;
-            //Lights[i].GetComponent<Light>().color = Color.Lerp(ColorOn, ColorOff, Duration);
         }
+    }
+
+    public void PickedUpTorch()
+    {
+        GotTorch = true;
     }
 }

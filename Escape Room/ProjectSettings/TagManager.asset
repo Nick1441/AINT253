@@ -12,6 +12,7 @@ TagManager:
   - Light
   - SwitchOff
   - SwitchOn
+  - StartingTorch
   layers:
   - Default
   - TransparentFX
