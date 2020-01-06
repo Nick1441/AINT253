@@ -13,6 +13,21 @@ TagManager:
   - SwitchOff
   - SwitchOn
   - StartingTorch
+  - Code1
+  - Code2
+  - Code3
+  - Code4
+  - Code5
+  - Code6
+  - Code7
+  - Code8
+  - Code9
+  - Left1
+  - Left2
+  - Left3
+  - Right1
+  - Right2
+  - Right3
   layers:
   - Default
   - TransparentFX

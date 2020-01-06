@@ -26,7 +26,7 @@ public class Puzzle2Logic : MonoBehaviour
 
     void Start()
     {
-        ControlButtons Controller = gameObject.GetComponent<ControlButtons>();
+        ControllerV2Controller Controller = gameObject.GetComponent<ControllerV2Controller>();
 
         Input1 = Controller.InputLeft;
         Input2 = Controller.InputRight;
@@ -49,12 +49,12 @@ public class Puzzle2Logic : MonoBehaviour
 
     private void Update()
     {
-        ControlButtons Controller = gameObject.GetComponent<ControlButtons>();
+        ControllerV2Controller Controller = gameObject.GetComponent<ControllerV2Controller>();
     }
 
     public void OnMoveButton()
     {
-        ControlButtons Controller = gameObject.GetComponent<ControlButtons>();
+        ControllerV2Controller Controller = gameObject.GetComponent<ControllerV2Controller>();
         Input1 = Controller.InputLeft;
         Input2 = Controller.InputRight;
 
