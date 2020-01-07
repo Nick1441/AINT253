@@ -24,6 +24,9 @@ public class Puzzle2Logic : MonoBehaviour
     public SendTubeLevels SendTube;
     public UnityEvent InvalidLevels;
 
+    public int LevelForSmoke;
+    public int LevelForSmoke2;
+
     void Start()
     {
         ControllerV2Controller Controller = gameObject.GetComponent<ControllerV2Controller>();
@@ -45,11 +48,16 @@ public class Puzzle2Logic : MonoBehaviour
         Debug.Log(Tube3.Current);
 
         SendTube.Invoke(Tube1.Current, Tube2.Current, Tube3.Current);
-    }
+
+        LevelForSmoke = 8;
+        LevelForSmoke2 = 0;
+}
 
     private void Update()
     {
         ControllerV2Controller Controller = gameObject.GetComponent<ControllerV2Controller>();
+        LevelForSmoke = Tube1.Current;
+        LevelForSmoke2 = Tube2.Current;
     }
 
     public void OnMoveButton()
