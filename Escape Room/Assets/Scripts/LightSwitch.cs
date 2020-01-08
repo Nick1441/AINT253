@@ -6,14 +6,17 @@ public class LightSwitch : MonoBehaviour
 {
     public GameObject SwitchOn;
     public GameObject SwitchOff;
+    public GameObject Torch;
+    public GameObject TurnLight;
     public GameObject[] Lights;
+
+    public GameObject[] Items;
     public float Duration = 3f;
 
     public Material Mat;
-    public Color ColorOn = new Vector4(67, 67, 62, 1);
-    public Color ColorOff = new Vector4(67, 67, 62, 0);
     public Transform Camera;
     public float RayDistance = 10f;
+    public GameObject Switch;
 
     public bool GotTorch = false;
 
@@ -21,6 +24,8 @@ public class LightSwitch : MonoBehaviour
     void Start()
     {
         Lights = GameObject.FindGameObjectsWithTag("Light");
+        Items = GameObject.FindGameObjectsWithTag("Item");
+        TurnLight.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,8 +65,9 @@ public class LightSwitch : MonoBehaviour
         //Make Arm Animation Make
         if (GotTorch == true)
         {
-            //DO ANIMATION TO PUT TORCH UP.
-            //TURN OFF TORCH
+            Torch.GetComponent<Animator>().SetTrigger("TorchUp");
+            Invoke("TurnLightOn", 0.9f);
+            //Trigger Animation For Holding Into IDLE Place.
         }
 
         SwitchOn.SetActive(true);
@@ -69,7 +75,12 @@ public class LightSwitch : MonoBehaviour
 
         for (int i = 0; i < Lights.Length; i++)
         {
-            Lights[i].GetComponent<Animator>().SetBool("On", false);
+            Lights[i].GetComponent<Animator>().SetTrigger("LightOff");
+        }
+
+        for (int i = 0; i < Items.Length; i++)
+        {
+            Items[i].GetComponent<Animator>().SetTrigger("ItemOff");
         }
     }
 
@@ -78,8 +89,8 @@ public class LightSwitch : MonoBehaviour
         //Make Arm Animation Make
         if (GotTorch == true)
         {
-            //DO ANIMATION TO PUT TORCH DOWN.
-            //TURN OFF TORCH
+            Torch.GetComponent<Animator>().SetTrigger("TorchDown");
+            Invoke("TurnLightOff", 0.2f);
         }
 
         SwitchOn.SetActive(false);
@@ -87,12 +98,30 @@ public class LightSwitch : MonoBehaviour
 
         for (int i = 0; i < Lights.Length; i++)
         {
-            Lights[i].GetComponent<Animator>().SetBool("On", true);
+            Lights[i].GetComponent<Animator>().SetTrigger("LightOn");
+        }
+
+        for (int i = 0; i < Items.Length; i++)
+        {
+            Items[i].GetComponent<Animator>().SetTrigger("ItemOn");
         }
     }
 
     public void PickedUpTorch()
     {
         GotTorch = true;
+    }
+
+    public void TurnLightOn()
+    {
+        
+        TurnLight.SetActive(true);
+        Switch.GetComponent<AudioSource>().Play();
+    }
+
+    public void TurnLightOff()
+    {
+        Switch.GetComponent<AudioSource>().Play();
+        TurnLight.SetActive(false);
     }
 }

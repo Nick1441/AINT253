@@ -13,6 +13,14 @@ public class SmokeChecker : MonoBehaviour
     public GameObject Smoke2;
     public GameObject Smoke3;
 
+    public GameObject Smoke4;
+    public GameObject Smoke5;
+    public GameObject Smoke6;
+
+    public GameObject DeathCube;
+    public GameObject WinningCube;
+    public GameObject Light;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,22 +41,41 @@ public class SmokeChecker : MonoBehaviour
 
         if (Level == 4 && Level2 == 4)
         {
-            //PUZZLE WILL BE COMPLETE DISABLE DEATH OUTSIDE.
+            Light.GetComponent<Animator>().SetTrigger("CorrectLevels");
+            Smoke1.GetComponent<Animator>().SetTrigger("White");
+            Smoke2.GetComponent<Animator>().SetTrigger("White");
+            Smoke3.GetComponent<Animator>().SetTrigger("White");
+            Smoke4.GetComponent<Animator>().SetTrigger("White");
+            Smoke5.GetComponent<Animator>().SetTrigger("White");
+            Smoke6.GetComponent<Animator>().SetTrigger("White");
+            DeathCube.SetActive(false);
+            WinningCube.SetActive(true);
             //CLEAR SMOKE
         }
         else if (Level > 4)
         {
-            Smoke1.GetComponent<Animator>().SetBool("Below", false);
-            Smoke2.GetComponent<Animator>().SetBool("Below", false);
-            Smoke3.GetComponent<Animator>().SetBool("Below", false);
+            Smoke1.GetComponent<Animator>().SetTrigger("Green");
+            Smoke2.GetComponent<Animator>().SetTrigger("Green");
+            Smoke3.GetComponent<Animator>().SetTrigger("Green");
+            Smoke4.GetComponent<Animator>().SetTrigger("Green");
+            Smoke5.GetComponent<Animator>().SetTrigger("Green");
+            Smoke6.GetComponent<Animator>().SetTrigger("Green");
+            DeathCube.SetActive(true);
+            WinningCube.SetActive(false);
+
             //GREEN SMOKE
             //ENABLE DEATH
         }
         else if (Level < 4)
         {
-            Smoke1.GetComponent<Animator>().SetBool("Below", true);
-            Smoke2.GetComponent<Animator>().SetBool("Below", true);
-            Smoke3.GetComponent<Animator>().SetBool("Below", true);
+            Smoke1.GetComponent<Animator>().SetTrigger("Yellow");
+            Smoke2.GetComponent<Animator>().SetTrigger("Yellow");
+            Smoke3.GetComponent<Animator>().SetTrigger("Yellow");
+            Smoke4.GetComponent<Animator>().SetTrigger("Yellow");
+            Smoke5.GetComponent<Animator>().SetTrigger("Yellow");
+            Smoke6.GetComponent<Animator>().SetTrigger("Yellow");
+            DeathCube.SetActive(true);
+            WinningCube.SetActive(false);
             //WHITE SMOKE
             //ENABLE DEATH
         }

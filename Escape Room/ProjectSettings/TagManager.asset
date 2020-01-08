@@ -28,6 +28,10 @@ TagManager:
   - Right1
   - Right2
   - Right3
+  - Item
+  - Wall
+  - KeyCard
+  - Reciever
   layers:
   - Default
   - TransparentFX
@@ -41,9 +45,9 @@ TagManager:
   - Right Cube
   - Torch
   - Numbers
-  - 
-  - 
-  - 
+  - Floor
+  - Player
+  - End
   - 
   - 
   - 

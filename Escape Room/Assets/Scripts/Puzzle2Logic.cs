@@ -27,6 +27,9 @@ public class Puzzle2Logic : MonoBehaviour
     public int LevelForSmoke;
     public int LevelForSmoke2;
 
+    public GameObject Light;
+    public GameObject CorrecSound;
+
     void Start()
     {
         ControllerV2Controller Controller = gameObject.GetComponent<ControllerV2Controller>();
@@ -107,16 +110,23 @@ public class Puzzle2Logic : MonoBehaviour
         //IF MOVING TUBE FROM IS EMPTY
         if (InputTube1 == InputTube2)
         {
-            InvalidInput.Invoke();
+            Light.GetComponent<Animator>().SetTrigger("Incorrect");
+            Light.GetComponent<AudioSource>().Play(1);
+            //InvalidInput.Invoke();
+
+            //PLAY BAD SOUND
         }
         else if (InputTube1.Current == InputTube1.Min)
         {
-            InvalidLevels.Invoke();
+            //InvalidLevels.Invoke();
+            Light.GetComponent<Animator>().SetTrigger("Incorrect");
+            Light.GetComponent<AudioSource>().Play(1);
         }
         //IF MOVING INTO TUBE IS FULL
         else if (InputTube2.Current == InputTube2.Max)
         {
-            //MOVING TARGET IS FULL
+            Light.GetComponent<Animator>().SetTrigger("Incorrect");
+            Light.GetComponent<AudioSource>().Play(1);
         }
 
         //IF MOVING INTO TUBE IS EMPTY/HALF
@@ -146,6 +156,8 @@ public class Puzzle2Logic : MonoBehaviour
             }
 
             SendTube.Invoke(Tube1.Current, Tube2.Current, Tube3.Current);
+            Light.GetComponent<Animator>().SetTrigger("Correct");
+            CorrecSound.GetComponent<AudioSource>().Play(0);
         }
 
 

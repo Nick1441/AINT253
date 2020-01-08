@@ -123,7 +123,7 @@ public class AcidAmountController : MonoBehaviour
         switch (Value3)
         {
             case 3:
-                NewPosInt3 = 11.833f;
+                NewPosInt3 = 11.808f;
                 break;
 
             case 2:

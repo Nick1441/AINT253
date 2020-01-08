@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class FindingTorch : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class FindingTorch : MonoBehaviour
     public GameObject TorchAsset;
     //WILL NEED TO CHANGE TO IMAGE
     public GameObject TorchText;
+
+    public UnityEvent SendTorch;
 
     void Update()
     {
@@ -34,8 +37,8 @@ public class FindingTorch : MonoBehaviour
 
                     TorchAsset.SetActive(false);
                     TorchText.SetActive(true);
-                    //EVENT TO GUI SAYING TORCH IS FOUND
-                    //EVENT TO LIGHTSWITCH TO SAY TORCH WILL BE ENABELED.
+
+                    SendTorch.Invoke();
                 }
             }
         }

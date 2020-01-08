@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SafeDoor : MonoBehaviour
 {
     //CODE
-    string Code = "1234";
+    string Code = "1429";
     public GameObject CodeText;
     public string CodeMaker = "";
     int length;
@@ -31,6 +31,8 @@ public class SafeDoor : MonoBehaviour
     public GameObject But9;
 
     public GameObject Light;
+    public GameObject Correct;
+    public GameObject KeySound;
     public GameObject Door;
 
     void Update()
@@ -55,6 +57,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "1";
                     But1.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 1;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -65,6 +68,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "2";
                     But2.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 2;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -75,6 +79,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "3";
                     But3.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 3;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -85,6 +90,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "4";
                     But4.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 4;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -95,6 +101,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "5";
                     But5.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 5;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -105,6 +112,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "6";
                     But6.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 6;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -115,6 +123,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "7";
                     But7.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 7;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -125,6 +134,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "8";
                     But8.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 8;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -135,6 +145,7 @@ public class SafeDoor : MonoBehaviour
                 {
                     CodeMaker = CodeMaker + "9";
                     But9.GetComponent<Animator>().SetBool("Pressed", true);
+                    KeySound.GetComponent<AudioSource>().Play(0);
                     Reset = 9;
                     Invoke("ResetButton", 1.2f);
                 }
@@ -157,6 +168,7 @@ public class SafeDoor : MonoBehaviour
                 if (Open == false)
                 {
                     Door.GetComponent<Animator>().SetTrigger("Open");
+                    Correct.GetComponent<AudioSource>().Play(0);
                     Open = true;
                 }
                 CodeMaker = "";
@@ -164,6 +176,7 @@ public class SafeDoor : MonoBehaviour
             else
             {
                 Light.GetComponent<Animator>().SetTrigger("Incorrect");
+                Light.GetComponent<AudioSource>().Play(0);
                 Debug.Log("Safe Locked");
                 CodeMaker = "";
             }
